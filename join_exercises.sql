@@ -27,3 +27,14 @@ FROM employees as e
   JOIN departments d ON emp.dept_no = d.dept_no
 WHERE emp.dept_no = 'd009' AND t.to_date = '9999-01-01'
 GROUP BY t.title;
+
+SELECT d.dept_name,
+  concat(E.first_name, ' ', E.last_name) as full_name,
+  s.salary
+from departments as d
+  JOIN dept_manager as dm ON (d.dept_no = dm.dept_no)
+  JOIN dept_emp as emp ON (emp.emp_no = dm.emp_no)
+  JOIN employees as e ON (emp.emp_no = E.emp_no)
+  JOIN salaries s ON (e.emp_no = s.emp_no)
+WHERE dm.to_date = '9999-01-01' and s.to_date = '9999-01-01'
+ORDER BY d.dept_name;
