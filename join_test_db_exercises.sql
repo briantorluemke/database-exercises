@@ -7,6 +7,9 @@ CREATE TABLE roles (
   PRIMARY KEY (id)
 );
 
+# DROP TABLE roles;
+# DROP TABLE users;
+
 CREATE TABLE users (
   id INT UNSIGNED NOT NULL AUTO_INCREMENT,
   name VARCHAR(100) NOT NULL,
@@ -45,7 +48,7 @@ SELECT *
 FROM roles
   RIGHT JOIN users u ON roles.id = u.role_id;
 
-SELECT u.role_id, roles.name, COUNT(*)
+SELECT roles.name 'Roles', COUNT(*) 'Number of people as said role'
 FROM roles
   LEFT JOIN users u ON roles.id = u.role_id
-GROUP BY u.role_id, roles.name;
+GROUP BY roles.name;
